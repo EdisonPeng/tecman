@@ -1,0 +1,49 @@
+<table>
+  <caption>Account Info</caption>
+  <tr>
+    <th>Name</th>
+    <th>Balance</th>
+    <th>Create Time</th>
+  </tr>
+  <tr>
+    <td>{{ account.name }}</td>
+    <td>{{ account.balance }}</td>
+    <td>{{ account.create_time }}</td>
+  </tr>
+</table>
+<br>
+<table>
+  <caption>Transfer To</caption>
+  <tr>
+    <th>Dst. Account</th>
+    <th>Balance</th>
+    <th>Create Time</th>
+    <th>Memo</th>
+  </tr>
+  {% for transfer in account.src_account.all %}
+    <tr>
+      <td>{{ transfer.dst_account.name }}</td>
+      <td>{{ transfer.amount }}</td>
+      <td>{{ transfer.create_time }}</td>
+      <td>{{ transfer.memo }}</td>
+    </tr>
+  {% endfor %}
+</table>
+<br>
+<table>
+  <caption>Transfer From</caption>
+  <tr>
+    <th>Src. Account</th>
+    <th>Balance</th>
+    <th>Create Time</th>
+    <th>Memo</th>
+  </tr>
+  {% for transfer in account.dst_account.all %}
+    <tr>
+      <td>{{ transfer.src_account.name }}</td>
+      <td>{{ transfer.amount }}</td>
+      <td>{{ transfer.create_time }}</td>
+      <td>{{ transfer.memo }}</td>
+    </tr>
+  {% endfor %}
+</table>

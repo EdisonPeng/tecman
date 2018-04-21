@@ -1,0 +1,30 @@
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'erp:execute_transfer' %}" method="post">
+{% csrf_token %}
+Src. Account:<br>
+{% for account in accounts %}
+  {% if forloop.first %}
+    <input type="radio" name="src_account" id="src_account{{ forloop.counter }}" value="{{ account.id }}" checked/>
+  {% else %}
+    <input type="radio" name="src_account" id="src_account{{ forloop.counter }}" value="{{ account.id }}"/>
+  {% endif %}
+  <label for="src_account{{ forloop.counter }}">{{ account.name }}</label><br />
+{% endfor %}
+<br>
+Dst. Account:<br>
+{% for account in accounts %}
+  {% if forloop.first %}
+    <input type="radio" name="dst_account" id="dst_account{{ forloop.counter }}" value="{{ account.id }}" checked/>
+  {% else %}
+    <input type="radio" name="dst_account" id="dst_account{{ forloop.counter }}" value="{{ account.id }}"/>
+  {% endif %}
+  <label for="dst_account{{ forloop.counter }}">{{ account.name }}</label><br />
+{% endfor %}
+<br>
+Amount:<br>
+<input type="text" name="amount" value=0><br>
+memo:<br>
+<input type="text" name="memo"><br>
+<input type="submit" value="Transfer" />
+</form>

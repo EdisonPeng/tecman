@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Balance</th>
+  </tr>
+{% for account in accounts %}
+  <tr>
+    <td><a href="{% url 'erp:account_detail' account.id %}">{{ account.name }}</a></td>
+    <td>{{ account.balance }}</td>
+  </tr>
+{% endfor %}
+</table>
+<br>
+<a href="{% url 'erp:transfer' %}">Transfer</a>
