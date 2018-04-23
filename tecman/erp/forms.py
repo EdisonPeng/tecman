@@ -1,6 +1,7 @@
 from django import forms
 from .models import Transfer, OperatingExpense
 
+
 class TransferForm(forms.ModelForm):
     class Meta:
         model = Transfer
@@ -18,9 +19,11 @@ class TransferForm(forms.ModelForm):
         dst_account = cleaned_data.get("dst_account")
         amount = cleaned_data.get("amount")
         if src_account == dst_account:
-            raise forms.ValidationError("Src. account is equal to Dst. account.")
+            raise forms.ValidationError(
+                "Src. account is equal to Dst. account.")
         if src_account.balance < amount:
-            raise forms.ValidationError("The balance of Src. account is not enough.")
+            raise forms.ValidationError(
+                "The balance of Src. account is not enough.")
 
 
 class CreateOperatingExpenseForm(forms.ModelForm):
@@ -39,4 +42,5 @@ class CreateOperatingExpenseForm(forms.ModelForm):
         account = cleaned_data.get("account")
         amount = cleaned_data.get("amount")
         if account.balance < amount:
-            raise forms.ValidationError("The balance of account is not enough.")
+            raise forms.ValidationError(
+                "The balance of account is not enough.")
