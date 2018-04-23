@@ -20,7 +20,7 @@
     <th>Create Time</th>
     <th>Memo</th>
   </tr>
-  {% for transfer in account.src_account.all %}
+  {% for transfer in account.transfer_src.all %}
     <tr>
       <td>{{ transfer.dst_account.name }}</td>
       <td>{{ transfer.amount }}</td>
@@ -38,7 +38,7 @@
     <th>Create Time</th>
     <th>Memo</th>
   </tr>
-  {% for transfer in account.dst_account.all %}
+  {% for transfer in account.transfer_dst.all %}
     <tr>
       <td>{{ transfer.src_account.name }}</td>
       <td>{{ transfer.amount }}</td>
@@ -46,4 +46,22 @@
       <td>{{ transfer.memo }}</td>
     </tr>
   {% endfor %}
+</table>
+<br>
+<table>
+  <caption>Operating Expense</caption>
+  <tr>
+    <th>ID</th>
+    <th>Item</th>
+    <th>Amount</th>
+    <th>Status</th>
+  </tr>
+{% for operating_expense in account.operating_expense.all %}
+  <tr>
+    <td><a href="{% url 'erp:operating_expense_detail' operating_expense.id %}">{{ operating_expense.id }}</a></td>
+    <td>{{ operating_expense.item }}</td>
+    <td>{{ operating_expense.amount }}</td>
+    <td>{{ operating_expense.status }}</td>
+  </tr>
+{% endfor %}
 </table>

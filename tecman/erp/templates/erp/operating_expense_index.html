@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Item</th>
+    <th>Amount</th>
+    <th>Status</th>
+  </tr>
+{% for operating_expense in operating_expenses %}
+  <tr>
+    <td><a href="{% url 'erp:operating_expense_detail' operating_expense.id %}">{{ operating_expense.id }}</a></td>
+    <td>{{ operating_expense.item }}</td>
+    <td>{{ operating_expense.amount }}</td>
+    <td>{{ operating_expense.status }}</td>
+  </tr>
+{% endfor %}
+</table>
+<br>
+<a href="{% url 'erp:create_operating_expense' %}">Create Operating Expense</a>

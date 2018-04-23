@@ -14,8 +14,21 @@ class Account(models.Model):
 
 
 class Transfer(models.Model):
-    src_account = models.ForeignKey(Account, on_delete=models.PROTECT, related_name='src_account')
-    dst_account = models.ForeignKey(Account, on_delete=models.PROTECT, related_name='dst_account')
+    src_account = models.ForeignKey(Account, on_delete=models.PROTECT, related_name='transfer_src')
+    dst_account = models.ForeignKey(Account, on_delete=models.PROTECT, related_name='transfer_dst')
     amount = models.IntegerField()
-    memo = models.TextField()
+    memo = models.TextField(blank=True)
+    create_time = models.DateTimeField(auto_now_add=True)
+
+
+class OperatingExpense(models.Model):
+    STATUS = (
+        ('WIP', 'WIP'),
+        ('Done', 'Done'),
+    )
+    item = models.CharField(max_length=100)
+    amount = models.IntegerField()
+    account = models.ForeignKey(Account, on_delete=models.PROTECT, related_name='operating_expense')
+    status = models.CharField(max_length=10, choices=STATUS)
+    memo = models.TextField(blank=True)
     create_time = models.DateTimeField(auto_now_add=True)

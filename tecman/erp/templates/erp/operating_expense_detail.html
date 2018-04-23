@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Amount</th>
+    <th>Account</th>
+    <th>Stauts</th>
+    <th>Memo</th>
+    <th>Create Time</th>
+  </tr>
+  <tr>
+    <td>{{ operating_expense.item }}</td>
+    <td>{{ operating_expense.amount }}</td>
+    <td><a href="{% url 'erp:account_detail' operating_expense.account.id %}">{{ operating_expense.account.name }}</a</td>
+    <td>{{ operating_expense.status }}</td>
+    <td>{{ operating_expense.memo }}</td>
+    <td>{{ operating_expense.create_time }}</td>
+  </tr>
+</table>
+<br>
+
+{% if operating_expense.status == 'WIP' %}
+<form action="{% url 'erp:operating_expense_detail' operating_expense.id %}" method="post">
+    {% csrf_token %}
+<input type="submit" value="Mark Status As Done" />
+</form>
+{% endif %}
