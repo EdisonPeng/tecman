@@ -25,13 +25,12 @@ SECRET_KEY = '-%k1do&%2(ykp*4p)=^d_df!ca67jsz+z^8vfm7n1_mw)6u(aa'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
     'customer.apps.CustomerConfig',
     'inventory.apps.InventoryConfig',
     'account.apps.AccountConfig',
