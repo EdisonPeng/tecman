@@ -13,6 +13,12 @@ class AccountAdmin(admin.ModelAdmin):
 class TransferAdmin(admin.ModelAdmin):
     list_display = ('src_account', 'dst_account', 'amount', 'exchange_rate', 'date')
 
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return ['src_account', 'dst_account', 'amount', 'exchange_rate']
+        else:
+            return []
+
     def save_model(self, request, obj, form, change):
         obj.src_account.amount -= obj.amount
         obj.src_account.save()
